@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./posts.module.css";
-import Post from "./post/post";
+import styles from "./Posts.module.css";
+import Post from "./post/Post";
 
 export type MessageType = {
     message:string

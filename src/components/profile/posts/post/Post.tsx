@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./post.module.css";
+import styles from "./Post.module.css";
 import ava from "./../../../../images/ava.png";
-import {MessageType} from "../posts";
+import {MessageType} from "../Posts";
 
 const Post = (props:MessageType) =>{
 

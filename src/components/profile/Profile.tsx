@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./profile.module.css";
+import styles from "./Profile.module.css";
 import background from "../../images/back.png";
 import avatar from "../../images/avatar.png";
 import ava from "../../images/ava.png";
-import Posts from "./posts/posts";
+import Posts from "./posts/Posts";
 
 const Profile = () =>{
 
