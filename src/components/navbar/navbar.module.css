@@ -1,0 +1,31 @@
+.sidebar{
+    width: 25%;
+    background: #A52A2A;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.sidebar__link{
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: .5s all;
+}
+
+.sidebar__link:hover{
+    color: #4876FF;
+    transition: .5s all;
+}
+
+.sidebar__link .active{
+    color: #4876FF;
+    transition: .5s all;
+}
+
+.settings{
+    margin-top: 20px;
+}
