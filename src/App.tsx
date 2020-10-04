@@ -4,8 +4,10 @@ import Header from "./components/header/Header";
 import Navbar from "./components/navbar/Navbar";
 import Profile from "./components/profile/Profile";
 import Dialogs from "./components/dialogs/Dialogs";
+import {BrowserRouter, Route} from "react-router-dom";
+import {StateType} from "./index";
 
-function App() {
+function App(props:StateType) {
   return (
     <BrowserRouter>
       <div className="App">
@@ -13,10 +15,9 @@ function App() {
           <Header/>
           <div className="inner">
             <Navbar/>
-            <Profile/>
-            {/*<Dialogs/>*/}
-            <Route></Route>
-            <Route></Route>
+            <Route exact path="/" render = {() => <Profile />}></Route>
+            <Route path="/profile" render = {() => <Profile/>}></Route>
+            <Route path="/dialogs" render = {() => <Dialogs/>}></Route>
           </div>
         </div>
       </div>

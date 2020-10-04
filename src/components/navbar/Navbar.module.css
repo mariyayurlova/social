@@ -4,7 +4,6 @@
     padding: 24px;
     display: flex;
     flex-direction: column;
-
 }
 
 .sidebar__link{
@@ -21,7 +20,7 @@
     transition: .5s all;
 }
 
-.sidebar__link .active{
+.sidebar__link.active{
     color: #4876FF;
     transition: .5s all;
 }

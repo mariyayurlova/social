@@ -1,0 +1,14 @@
+.dialogs__messages_item{
+    border: 1px solid #B22222;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.dialogs__messages_name{
+    display: block;
+    font-size: 20px;
+    color: #000000;
+    margin-bottom: 5px;
+    text-decoration: none;
+}

@@ -1,0 +1,48 @@
+.dialogs__posts_message{
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.dialogs__posts_message:nth-child(2n){
+    flex-direction: row-reverse;
+}
+
+.dialogs__posts_item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialogs__posts_item_image{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.dialogs__posts_item_image img{
+    width: 100%;
+    height: auto;
+}
+
+.dialogs__posts-item_name{
+    display: block;
+    font-size: 14px;
+    color: #000000;
+}
+
+.dialogs__posts_text{
+    font-size: 20px;
+    color: #000000;
+    padding-left: 20px;
+}
+
+.dialogs__posts_text p{
+
+}
+

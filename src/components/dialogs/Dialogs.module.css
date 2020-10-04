@@ -1,0 +1,18 @@
+.dialogs{
+    padding: 0 30px;
+}
+
+.dialogs__title{
+    display: block;
+    font-size: 30px;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.dialogs__inner{
+    display: flex;
+}
+
+
+
+
