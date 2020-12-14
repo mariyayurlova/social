@@ -1,31 +1,32 @@
+import { v1 } from "uuid"
 
-type PostsType = {
+export type PostsType = {
     id: string,
     message: string,
     likesCount: number
 }
 
-type DialogsType = {
+export type DialogsType = {
     id: string,
     name: string
 }
 
-type MessagesType = {
+export type MessagesType = {
     id: string,
     message: string
 }
 
-type PostsPageType = {
+export type PostsPageType = {
     posts: Array<PostsType>
 }
 
-type DialogsPageType = {
+export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
 }
 
 
-type RootStateType = {
+export type RootStateType = {
     profilePage: PostsPageType
     dialogsPage: DialogsPageType
 }
@@ -33,24 +34,26 @@ type RootStateType = {
 let state:RootStateType = {
     profilePage:{
         posts: [
-            {id: "1", message: 'Hi, how are you?', likesCount: 12},
-            {id: "2", message: 'Its my first post', likesCount: 11},
-            {id: "3", message: 'Blabla', likesCount: 10},
-            {id: "4", message: 'Dadada', likesCount: 9}
+            {id: v1(), message: 'Hi, how are you?', likesCount: 12},
+            {id: v1(), message: 'Its my first post', likesCount: 11},
+            {id: v1(), message: 'Blabla', likesCount: 10},
+            {id: v1(), message: 'Dadada', likesCount: 9}
         ]
     },
     dialogsPage:{
         dialogs: [
-            {id: "1", name: "Masha"},
-            {id: "2", name: "Dima"},
-            {id: "3", name: "Sasha"}
+            {id: v1(), name: "Masha"},
+            {id: v1(), name: "Dima"},
+            {id: v1(), name: "Sasha"}
         ],
         messages: [
-            {id: "1", message: 'Hi'},
-            {id: "2", message: 'How is your life?'},
-            {id: "3", message: 'Yo'},
-            {id: "4", message: 'Yo'},
-            {id: "5", message: 'Yo'}
+            {id: v1(), message: 'Hi'},
+            {id: v1(), message: 'How is your life?'},
+            {id: v1(), message: 'Yo'},
+            {id: v1(), message: 'Yo'},
+            {id: v1(), message: 'Yo'}
         ]
     }
 }
+
+export default state;
