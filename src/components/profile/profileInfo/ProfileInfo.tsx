@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./ProfileInfo.module.css";
 import background from "./../../../images/back.png";
 import avatar from "./../../../images/avatar.png";
+import {Typography} from "@material-ui/core";
+
 
 const ProfileInfo = () =>{
 
@@ -15,11 +17,21 @@ const ProfileInfo = () =>{
                     <img src={avatar}/>
                 </div>
                 <div className={styles.wrapper__content}>
-                    <span className={styles.wrapper__name}>Masha Yurlova</span>
-                    <span className={styles.wrapper__text}>Date of Birth: 27.10.1994</span>
-                    <span className={styles.wrapper__text}>City: Minsk</span>
-                    <span className={styles.wrapper__text}>Education: BSUIR</span>
-                    <span className={styles.wrapper__text}>Web site: https://github.com/mariyayurlova</span>
+                    <Typography variant="h4" component="h2">
+                        Masha Yurlova
+                    </Typography>
+                    <Typography variant="subtitle1" component="h2">
+                        Date of Birth: 27.10.1994
+                    </Typography>
+                    <Typography variant="subtitle1" component="h2">
+                        City: Minsk
+                    </Typography>
+                    <Typography variant="subtitle1" component="h2">
+                        Education: BSUIR
+                    </Typography>
+                    <Typography variant="subtitle1" component="h2">
+                        Web site: https://github.com/mariyayurlova
+                    </Typography>
                 </div>
             </div>
         </div>

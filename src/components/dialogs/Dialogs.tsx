@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Dialogs.module.css";
 import DialogsPeoples from "./dialogsPeoples/DialogsPeoples";
 import DialogsPosts from "./dialogsPosts/DialogsPosts";
+import {Typography} from "@material-ui/core";
 
 
 
@@ -9,7 +10,9 @@ const Dialogs = () =>{
 
     return (
         <div className={styles.dialogs}>
-            <span className={styles.dialogs__title}>Dialogs</span>
+            <Typography variant="h4" component="h2">
+                Dialogs
+            </Typography>
             <div className={styles.dialogs__inner}>
                 <DialogsPeoples/>
                 <DialogsPosts/>

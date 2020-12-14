@@ -28,3 +28,7 @@
 .settings{
     margin-top: 20px;
 }
+
+.active{
+    background-color: rgba(0, 0, 0, 0.04) !important;
+}

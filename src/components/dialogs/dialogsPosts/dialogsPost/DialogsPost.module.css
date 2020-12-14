@@ -8,6 +8,11 @@
     flex-direction: row-reverse;
 }
 
+.dialogs__posts_message:nth-child(2n) .dialogs__posts_text{
+    margin-left: 0;
+    margin-right: 20px;
+}
+
 .dialogs__posts_item{
     display: flex;
     flex-direction: column;
