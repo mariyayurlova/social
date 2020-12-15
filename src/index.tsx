@@ -1,19 +1,9 @@
- import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
- import state, {RootStateType} from "./redux/state";
+import state from "./redux/state";
+import {renderTree} from "./render";
 
-
-const renderTree = (state: RootStateType) => {
-    ReactDOM.render(
-        <React.StrictMode>
-            <App />
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-}
 
 renderTree(state);
 

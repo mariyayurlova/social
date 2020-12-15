@@ -33,12 +33,21 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type PostsTypeInner = {
+    addPost: (postMessage:string) => void,
     posts: Array<PostsType>
 }
+
 
 const Posts:React.FC<PostsTypeInner> = (props) =>{
     const classes = useStyles();
 
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
+
+    let addPost = () => {
+        if(newPostElement.current){
+            props.addPost(newPostElement.current.value)
+        }
+    }
 
     let PostsMap = props.posts.map((item, index) => {
         return <Post key={index} id={item.id} message={item.message} likesCount={item.likesCount}/>
@@ -60,8 +69,9 @@ const Posts:React.FC<PostsTypeInner> = (props) =>{
                             multiline
                             variant="outlined"
                             className={classes.root}
+                            inputRef={newPostElement}
                         />
-                        <Button variant="contained" >
+                        <Button variant="contained" onClick={addPost}>
                             Send
                         </Button>
                     </form>

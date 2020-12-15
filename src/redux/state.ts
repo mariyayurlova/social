@@ -1,4 +1,5 @@
 import { v1 } from "uuid"
+import {renderTree} from "../render";
 
 export type PostsType = {
     id: string,
@@ -54,6 +55,16 @@ let state:RootStateType = {
             {id: v1(), message: 'Yo'}
         ]
     }
+}
+
+export let addPost = (postMessage:string) => {
+    let newPost: PostsType = {
+        id: new Date().toDateString(),
+        message: postMessage,
+        likesCount: 0
+    }
+    state.profilePage.posts.push(newPost);
+    renderTree(state);
 }
 
 export default state;

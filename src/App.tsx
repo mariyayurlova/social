@@ -5,9 +5,13 @@ import Navbar from "./components/navbar/Navbar";
 import Profile from "./components/profile/Profile";
 import Dialogs from "./components/dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import state from './redux/state';
+import state, {addPost, PostsPageType, PostsType} from './redux/state';
 
-function App() {
+type AppType = {
+}
+
+
+const App:React.FC<AppType> = (props) => {
 
 
   return (
@@ -17,8 +21,8 @@ function App() {
           <Header/>
           <div className="inner">
             <Navbar/>
-            <Route exact path="/" render = {() => <Profile profilePage={state.profilePage}/>}/>
-            <Route path="/profile" render = {() => <Profile profilePage={state.profilePage}/>}/>
+            <Route exact path="/" render = {() => <Profile profilePage={state.profilePage} addPost={addPost}/>}/>
+            <Route path="/profile" render = {() => <Profile profilePage={state.profilePage} addPost={addPost}/>}/>
             <Route path="/dialogs" render = {() => <Dialogs />}/>
           </div>
         </div>
