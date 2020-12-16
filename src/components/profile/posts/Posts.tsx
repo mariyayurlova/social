@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Posts.module.css";
 import Post from "./post/Post";
-import {PostsPageType, PostsType} from "../../../redux/state";
+import {changeText, PostsPageType, PostsType} from "../../../redux/state";
 import {Typography, Button} from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -33,7 +33,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type PostsTypeInner = {
-    addPost: (postMessage:string) => void,
+    addPost: () => void,
+    changeText: (newText:string) => void,
     posts: Array<PostsType>
 }
 
@@ -45,7 +46,14 @@ const Posts:React.FC<PostsTypeInner> = (props) =>{
 
     let addPost = () => {
         if(newPostElement.current){
-            props.addPost(newPostElement.current.value)
+            props.addPost()
+            props.changeText('');
+        }
+    }
+
+    let onPostChange = () => {
+        if(newPostElement.current){
+            props.changeText(newPostElement.current.value);
         }
     }
 
@@ -70,6 +78,7 @@ const Posts:React.FC<PostsTypeInner> = (props) =>{
                             variant="outlined"
                             className={classes.root}
                             inputRef={newPostElement}
+                            onChange={onPostChange}
                         />
                         <Button variant="contained" onClick={addPost}>
                             Send

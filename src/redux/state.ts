@@ -19,6 +19,7 @@ export type MessagesType = {
 
 export type PostsPageType = {
     posts: Array<PostsType>
+    newPostText: string
 }
 
 export type DialogsPageType = {
@@ -39,7 +40,8 @@ let state:RootStateType = {
             {id: v1(), message: 'Its my first post', likesCount: 11},
             {id: v1(), message: 'Blabla', likesCount: 10},
             {id: v1(), message: 'Dadada', likesCount: 9}
-        ]
+        ],
+        newPostText: ''
     },
     dialogsPage:{
         dialogs: [
@@ -57,13 +59,19 @@ let state:RootStateType = {
     }
 }
 
-export let addPost = (postMessage:string) => {
+export let addPost = () => {
     let newPost: PostsType = {
         id: new Date().toDateString(),
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 0
     }
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
+    renderTree(state);
+}
+
+export let changeText = (newText:string) => {
+    state.profilePage.newPostText = newText;
     renderTree(state);
 }
 
