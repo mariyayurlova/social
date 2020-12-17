@@ -1,5 +1,8 @@
-import { v1 } from "uuid"
-import {renderTree} from "../render";
+import { v1 } from "uuid";
+
+let renderTree = () => {
+    console.log("rerender")
+}
 
 export type PostsType = {
     id: string,
@@ -65,6 +68,10 @@ export let addPost = (postMessage:string) => {
     }
     state.profilePage.posts.push(newPost);
     renderTree(state);
+}
+
+export const subscribe = (observer: () => void) => {
+        renderTree = observer;
 }
 
 export default state;
