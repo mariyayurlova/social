@@ -18,7 +18,7 @@ let renderTree = (state: RootStateType) => {
 
 renderTree(state);
 
-subscribe(renderTree);
+subscribe(renderTree());
 
 
 

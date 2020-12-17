@@ -70,12 +70,12 @@ export let addPost = () => {
     }
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = '';
-    renderTree(state);
+    renderTree();
 }
 
 export let changeText = (newText:string) => {
     state.profilePage.newPostText = newText;
-    renderTree(state);
+    renderTree();
 }
 
 export const subscribe = (observer: () => void) => {
