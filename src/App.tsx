@@ -5,14 +5,15 @@ import Navbar from "./components/navbar/Navbar";
 import Profile from "./components/profile/Profile";
 import Dialogs from "./components/dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import state, {addPost, changeText, PostsPageType, PostsType} from './redux/state';
+import store, {StoreType} from './redux/state';
 
-type AppType = {
+type PropsType = {
+  store: StoreType
 }
 
 
-const App:React.FC<AppType> = (props) => {
-
+const App:React.FC<PropsType> = (props) => {
+  const state = props.store.getState();
 
   return (
     <BrowserRouter>
@@ -21,9 +22,9 @@ const App:React.FC<AppType> = (props) => {
           <Header/>
           <div className="inner">
             <Navbar/>
-            <Route exact path="/" render = {() => <Profile profilePage={state.profilePage} addPost={addPost} changeText={changeText}/>}/>
-            <Route path="/profile" render = {() => <Profile profilePage={state.profilePage} addPost={addPost} changeText={changeText}/>}/>
-            <Route path="/dialogs" render = {() => <Dialogs />}/>
+            <Route exact path="/" render = {() => <Profile profilePage={state.profilePage} dispatch={props.store.dispatch.bind(props.store)}/>}/>
+            <Route path="/profile" render = {() => <Profile profilePage={state.profilePage} dispatch={props.store.dispatch.bind(props.store)}/>}/>
+            <Route path="/dialogs" render = {() => <Dialogs dialogsPage={state.dialogsPage} dispatch={props.store.dispatch.bind(props.store)}/>}/>
           </div>
         </div>
       </div>

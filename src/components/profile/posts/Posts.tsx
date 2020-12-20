@@ -1,7 +1,7 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import styles from "./Posts.module.css";
 import Post from "./post/Post";
-import {changeText, PostsPageType, PostsType} from "../../../redux/state";
+import {addPostAC, changePostAC, PostsType} from "../../../redux/state";
 import {Typography, Button} from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -33,8 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type PostsTypeInner = {
-    addPost: () => void,
-    changeText: (newText:string) => void,
+    dispatch: (action: any) => void
     posts: Array<PostsType>
 }
 
@@ -45,16 +44,11 @@ const Posts:React.FC<PostsTypeInner> = (props) =>{
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-        if(newPostElement.current){
-            props.addPost()
-            props.changeText('');
-        }
+        props.dispatch(addPostAC())
     }
 
-    let onPostChange = () => {
-        if(newPostElement.current){
-            props.changeText(newPostElement.current.value);
-        }
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.dispatch(changePostAC(e.currentTarget.value))
     }
 
     let PostsMap = props.posts.map((item, index) => {

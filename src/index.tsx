@@ -1,24 +1,22 @@
 import React from 'react';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import state, {RootStateType, subscribe} from "./redux/state";
 import ReactDOM from "react-dom";
 import App from "./App";
+import store from './redux/state';
 
 
-let renderTree = (state: RootStateType) => {
+let renderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <App />
+            <App store={store}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 
-
-renderTree(state);
-
-subscribe(renderTree());
+store.subscribe(renderTree);
+renderTree();
 
 
 
