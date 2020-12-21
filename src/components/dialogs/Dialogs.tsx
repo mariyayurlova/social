@@ -3,7 +3,7 @@ import styles from "./Dialogs.module.css";
 import DialogsPeoples from "./dialogsPeoples/DialogsPeoples";
 import DialogsPosts from "./dialogsPosts/DialogsPosts";
 import {Typography} from "@material-ui/core";
-import {ActionsType, PostsPageType, DialogsPageType} from "../../redux/state";
+import {ActionsType, DialogsPageType, PostsPageType} from "../../redux/store";
 import Posts from "../profile/posts/Posts";
 
 type DialogPostsType = {

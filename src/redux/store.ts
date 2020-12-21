@@ -1,4 +1,6 @@
 import { v1 } from "uuid";
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
 
 export type PostsType = {
     id: string,
@@ -100,62 +102,14 @@ let store:StoreType = {
     },
 
     dispatch(action){
-        if (action.type === 'ADD-POST'){
-            let newPost: PostsType = {
-                id: new Date().toDateString(),
-                message: this._state.profilePage.newPostText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._onChange();
-        }
-        else if(action.type === 'CHANGE-POST'){
-            this._state.profilePage.newPostText = action.newText;
-            this._onChange();
-        }
-        else if(action.type === 'CHANGE-MESSAGE-BODY'){
-            this._state.dialogsPage.newMessageBody = action.body;
-            this._onChange();
-        }
-        else if(action.type === 'SEND-MESSAGE'){
-            let body = this._state.dialogsPage.newMessageBody;
-            let newMessage: MessagesType = {
-                id: new Date().toDateString(),
-                message: body,
-            }
-            this._state.dialogsPage.newMessageBody = '';
-            this._state.dialogsPage.messages.push(newMessage);
-            this._onChange();
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+
+        this._onChange();
     }
 
 }
 
-export const addPostAC = (): AddPostTypeAction => {
-    return{
-        type: 'ADD-POST'
-    }
-}
 
-export const sendMessageAC = (): SendMessageTypeAction => {
-    return{
-        type: 'SEND-MESSAGE'
-    }
-}
-
-export const changePostAC = (newText: string): ChangePostTypeAction => {
-    return{
-        type: 'CHANGE-POST',
-        newText: newText
-    }
-}
-
-export const changeMessageBodyAC = (body: string): ChangeMessageBodyTypeAction => {
-    return{
-        type: 'CHANGE-MESSAGE-BODY',
-        body: body
-    }
-}
 
 export default store;

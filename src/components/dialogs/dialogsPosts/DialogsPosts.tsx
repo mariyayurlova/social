@@ -6,13 +6,13 @@ import TextField from "@material-ui/core/TextField";
 import {Button} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {
-    addPostAC,
     changeMessageBodyAC,
-    changePostAC,
-    MessagesType,
-    PostsType,
     sendMessageAC
-} from "../../../redux/state";
+} from "../../../redux/dialogs-reducer";
+import {
+    MessagesType,
+    PostsType
+} from "../../../redux/store";
 import Post from "../../profile/posts/post/Post";
 
 export type DialogsPostsType = {

@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from "react";
 import styles from "./Posts.module.css";
 import Post from "./post/Post";
-import {addPostAC, changePostAC, PostsType} from "../../../redux/state";
+import {addPostAC, changePostAC} from "../../../redux/profile-reducer";
+import {ActionsType, PostsType} from "../../../redux/store";
 import {Typography, Button} from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type PostsTypeInner = {
-    dispatch: (action: any) => void
+    dispatch: (action: ActionsType) => void
     posts: Array<PostsType>
 }
 
