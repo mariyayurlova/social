@@ -3,10 +3,10 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import ReactDOM from "react-dom";
 import App from "./App";
-import store from './redux/store';
+import store, { RootStateType } from './redux/store';
 
 
-let renderTree = () => {
+let renderTree = (state:RootStateType) => {
     ReactDOM.render(
         <React.StrictMode>
             <App store={store}/>
@@ -15,8 +15,13 @@ let renderTree = () => {
     );
 }
 
-store.subscribe(renderTree);
-renderTree();
+renderTree(store.getState());
+
+store.subscribe(()=>{
+    let state = store.getState();
+    renderTree(state);
+});
+
 
 
 

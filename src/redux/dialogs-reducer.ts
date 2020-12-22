@@ -1,7 +1,24 @@
-import {ChangeMessageBodyTypeAction, MessagesType, SendMessageTypeAction} from "./store";
+import {ChangeMessageBodyTypeAction, MessagesType, SendMessageTypeAction, DialogsPageType, ActionsType} from "./store";
 import profileReducer from "./profile-reducer";
+import {v1} from "uuid";
 
-const dialogsReducer = (state, action) => {
+let initialState:DialogsPageType = {
+    dialogs: [
+        {id: v1(), name: "Masha"},
+        {id: v1(), name: "Dima"},
+        {id: v1(), name: "Sasha"}
+    ],
+    messages: [
+        {id: v1(), message: 'Hi'},
+        {id: v1(), message: 'How is your life?'},
+        {id: v1(), message: 'Yo'},
+        {id: v1(), message: 'Yo'},
+        {id: v1(), message: 'Yo'}
+    ],
+    newMessageBody: ''
+}
+
+const dialogsReducer = (state=initialState, action:ActionsType) => {
 
     switch (action.type){
         case 'CHANGE-MESSAGE-BODY':

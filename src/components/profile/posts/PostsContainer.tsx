@@ -6,6 +6,7 @@ import {ActionsType, PostsType} from "../../../redux/store";
 import {Typography, Button} from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Posts from "./Posts";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -33,56 +34,33 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+type PostsTypeInner = {
+    dispatch: (action: ActionsType) => void
+    posts: Array<PostsType>
+    store: any
+}
 
 
-const Posts = (props:any) =>{
+const PostsContainer:React.FC<PostsTypeInner> = (props) =>{
     const classes = useStyles();
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-        props.dispatch(addPostAC())
+        props.store.dispatch(addPostAC())
     }
 
-    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(changePostAC(e.currentTarget.value))
+    let onPostChange = (text: string) => {
+        let action = changePostAC(text);
+        props.store.dispatch(action);
     }
 
-    let PostsMap = props.map((item, index) => {
+    let PostsMap = props.posts.map((item, index) => {
         return <Post key={index} id={item.id} message={item.message} likesCount={item.likesCount}/>
     })
 
-    return (
-        <div>
-            <div className={styles.wrapper__posts}>
-                <Typography variant="h4" component="h2">
-                    My posts
-                </Typography>
-
-                <div className={styles.wrapper__posts_inner}>
-                    <form className={classes.root} noValidate autoComplete="off">
-                        <TextField
-                            id="outlined-textarea"
-                            label="Your news"
-                            placeholder="Your news"
-                            multiline
-                            variant="outlined"
-                            className={classes.root}
-                            inputRef={newPostElement}
-                            onChange={onPostChange}
-                        />
-                        <Button variant="contained" onClick={addPost}>
-                            Send
-                        </Button>
-                    </form>
-                </div>
-            </div>
-            <div className={styles.wrapper__messages}>
-                {PostsMap}
-            </div>
-        </div>
-)
+    return (<Posts onPostChange={onPostChange} addPost={addPost} posts={props.posts}/>)
 
 }
 
-export default Posts;
+export default PostsContainer;

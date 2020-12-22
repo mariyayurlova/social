@@ -1,12 +1,20 @@
-import {ActionsType, AddPostTypeAction, ChangePostTypeAction, PostsType, RootStateType} from "./store";
+import {ActionsType, AddPostTypeAction, ChangePostTypeAction, PostsType, RootStateType, PostsPageType} from "./store";
 import React from "react";
+import {v1} from "uuid";
 
-type ReducerType = {
-    state: RootStateType
-    action: ActionsType
+
+
+let initialState:PostsPageType = {
+    posts: [
+        {id: v1(), message: 'Hi, how are you?', likesCount: 12},
+        {id: v1(), message: 'Its my first post', likesCount: 11},
+        {id: v1(), message: 'Blabla', likesCount: 10},
+        {id: v1(), message: 'Dadada', likesCount: 9}
+    ],
+    newPostText: ''
 }
 
-const profileReducer = (state, action):ReducerType => {
+const profileReducer = (state=initialState, action:ActionsType) => {
 
     switch (action.type){
         case 'ADD-POST':
