@@ -2,7 +2,7 @@ import React, {ChangeEvent} from "react";
 import styles from "./Posts.module.css";
 import Post from "./post/Post";
 import {addPostAC, changePostAC} from "../../../redux/profile-reducer";
-import {ActionsType, PostsType} from "../../../redux/store";
+import {ActionsType, PostsPageType, PostsType, StoreType} from "../../../redux/store";
 import {Typography, Button} from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -33,9 +33,16 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+type PostType = {
+    dispatch: (action: ActionsType) => void
+    posts: PostsPageType
+    onPostChange: (text: string) => void
+    addPost: () => void
+}
 
 
-const Posts = (props:any) =>{
+
+const Posts:React.FC<PostType> = (props) =>{
     const classes = useStyles();
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
@@ -48,7 +55,7 @@ const Posts = (props:any) =>{
         props.dispatch(changePostAC(e.currentTarget.value))
     }
 
-    let PostsMap = props.map((item, index) => {
+    let PostsMap = props.posts.posts.map((item, index) => {
         return <Post key={index} id={item.id} message={item.message} likesCount={item.likesCount}/>
     })
 

@@ -1,11 +1,8 @@
 import React, {ChangeEvent} from "react";
-import styles from "./Posts.module.css";
 import Post from "./post/Post";
 import {addPostAC, changePostAC} from "../../../redux/profile-reducer";
-import {ActionsType, PostsType} from "../../../redux/store";
-import {Typography, Button} from "@material-ui/core";
+import {ActionsType, PostsPageType, PostsType, StoreType} from "../../../redux/store";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import Posts from "./Posts";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,13 +33,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type PostsTypeInner = {
     dispatch: (action: ActionsType) => void
-    posts: Array<PostsType>
-    store: any
+    store: StoreType
+    profilePage: PostsPageType
 }
 
 
 const PostsContainer:React.FC<PostsTypeInner> = (props) =>{
     const classes = useStyles();
+    let posts = props.profilePage.posts;
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
@@ -55,11 +53,11 @@ const PostsContainer:React.FC<PostsTypeInner> = (props) =>{
         props.store.dispatch(action);
     }
 
-    let PostsMap = props.posts.map((item, index) => {
+    let PostsMap = posts.map((item, index) => {
         return <Post key={index} id={item.id} message={item.message} likesCount={item.likesCount}/>
     })
 
-    return (<Posts onPostChange={onPostChange} addPost={addPost} posts={props.posts}/>)
+    return (<Posts onPostChange={onPostChange} addPost={addPost} posts={props.profilePage} dispatch={props.dispatch}/>)
 
 }
 
