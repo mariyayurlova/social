@@ -32,32 +32,25 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type PostsTypeInner = {
-    dispatch: (action: ActionsType) => void
     store: StoreType
-    profilePage: PostsPageType
 }
 
 
 const PostsContainer:React.FC<PostsTypeInner> = (props) =>{
-    const classes = useStyles();
-    let posts = props.profilePage.posts;
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    let state = props.store.getState();
 
     let addPost = () => {
         props.store.dispatch(addPostAC())
     }
 
-    let onPostChange = (text: string) => {
+    let postChange = (text: string) => {
         let action = changePostAC(text);
         props.store.dispatch(action);
     }
 
-    let PostsMap = posts.map((item, index) => {
-        return <Post key={index} id={item.id} message={item.message} likesCount={item.likesCount}/>
-    })
 
-    return (<Posts onPostChange={onPostChange} addPost={addPost} posts={props.profilePage} dispatch={props.dispatch}/>)
+    return (<Posts onPostChange={postChange} onAddPost={addPost} posts={state.profilePage.posts} newPostText={state.profilePage.newPostText} />)
 
 }
 

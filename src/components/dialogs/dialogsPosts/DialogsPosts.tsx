@@ -49,8 +49,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type MessageTypeInner = {
-    dispatch: (action: any) => void
+    onAddMessage: () => void
+    onMessageChange:(body: string) => void
     messages: Array<MessagesType>
+    newMessageBody: string
 }
 
 
@@ -61,11 +63,11 @@ const DialogsPosts:React.FC<MessageTypeInner> = (props) =>{
     let newMessageElement = React.createRef<HTMLTextAreaElement>();
 
     let addMessage = () => {
-        props.dispatch(sendMessageAC())
+        props.onAddMessage()
     }
 
     let onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(changeMessageBodyAC(e.currentTarget.value))
+        props.onMessageChange(e.currentTarget.value)
     }
 
     let MessageMap = props.messages.map((item, index) => {
@@ -86,6 +88,7 @@ const DialogsPosts:React.FC<MessageTypeInner> = (props) =>{
                         multiline
                         variant="outlined"
                         className={classes.root}
+                        value={props.newMessageBody}
                         inputRef={newMessageElement}
                         onChange={onMessageChange}
                     />

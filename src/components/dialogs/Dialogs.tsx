@@ -3,12 +3,12 @@ import styles from "./Dialogs.module.css";
 import DialogsPeoples from "./dialogsPeoples/DialogsPeoples";
 import DialogsPosts from "./dialogsPosts/DialogsPosts";
 import {Typography} from "@material-ui/core";
-import {ActionsType, DialogsPageType, PostsPageType} from "../../redux/store";
+import {ActionsType, DialogsPageType, PostsPageType, StoreType} from "../../redux/store";
 import Posts from "../profile/posts/Posts";
+import DialogsPostsContainer from "./dialogsPosts/DialogsPostsContainer";
 
 type DialogPostsType = {
-    dialogsPage: DialogsPageType
-    dispatch: (action: ActionsType) => void
+    store: StoreType
 }
 
 const Dialogs:React.FC<DialogPostsType> = (props) =>{
@@ -20,7 +20,7 @@ const Dialogs:React.FC<DialogPostsType> = (props) =>{
             </Typography>
             <div className={styles.dialogs__inner}>
                 <DialogsPeoples/>
-                <DialogsPosts messages={props.dialogsPage.messages} dispatch={props.dispatch}/>
+                <DialogsPostsContainer store={props.store}/>
             </div>
         </div>
     )

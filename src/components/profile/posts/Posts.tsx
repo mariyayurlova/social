@@ -34,10 +34,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type PostType = {
-    dispatch: (action: ActionsType) => void
-    posts: PostsPageType
+    posts: Array<PostsType>
     onPostChange: (text: string) => void
-    addPost: () => void
+    onAddPost: () => void
+    newPostText: string
 }
 
 
@@ -47,15 +47,15 @@ const Posts:React.FC<PostType> = (props) =>{
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    let addPost = () => {
-        props.dispatch(addPostAC())
+    let onAddPost = () => {
+        props.onAddPost();
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(changePostAC(e.currentTarget.value))
+        props.onPostChange(e.currentTarget.value);
     }
 
-    let PostsMap = props.posts.posts.map((item, index) => {
+    let PostsMap = props.posts.map((item, index) => {
         return <Post key={index} id={item.id} message={item.message} likesCount={item.likesCount}/>
     })
 
@@ -74,11 +74,12 @@ const Posts:React.FC<PostType> = (props) =>{
                             placeholder="Your news"
                             multiline
                             variant="outlined"
+                            value={props.newPostText}
                             className={classes.root}
                             inputRef={newPostElement}
                             onChange={onPostChange}
                         />
-                        <Button variant="contained" onClick={addPost}>
+                        <Button variant="contained" onClick={onAddPost}>
                             Send
                         </Button>
                     </form>

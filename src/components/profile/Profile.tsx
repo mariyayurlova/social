@@ -8,8 +8,6 @@ import PostsContainer from "./posts/PostsContainer";
 
 type ProfilePostsType = {
     store: StoreType
-    dispatch: (action: ActionsType) => void
-    profilePage: PostsPageType
 }
 
 
@@ -18,7 +16,7 @@ const Profile:React.FC<ProfilePostsType> = (props) =>{
     return (
         <div className={styles.wrapper}>
             <ProfileInfo/>
-            <PostsContainer  profilePage={props.profilePage} store={props.store} dispatch={props.dispatch}/>
+            <PostsContainer store={props.store} />
         </div>
     )
 

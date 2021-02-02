@@ -9,7 +9,7 @@ import store, { RootStateType } from './redux/store';
 let renderTree = (state:RootStateType) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App store={store} dispatch={store.dispatch.bind(store)}/>
+            <App store={store}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
